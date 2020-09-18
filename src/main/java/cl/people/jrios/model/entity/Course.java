@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "course")
@@ -18,16 +19,9 @@ public class Course {
 	@Column(name = "name", nullable = false, length = 40)
 	private String name;
 
+	@Size(max = 4, message = "code: four characters")
 	@Column(name = "code", nullable = false, length = 4)
 	private String code;
-
-	public Integer getIdCourse() {
-		return idCourse;
-	}
-
-	public void setIdCourse(Integer idCourse) {
-		this.idCourse = idCourse;
-	}
 
 	public String getName() {
 		return name;

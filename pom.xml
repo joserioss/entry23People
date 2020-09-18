@@ -70,7 +70,12 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<!-- Jpa # -->
-
+		<!-- JSR 303 Validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!-- JSR 303 Validation # -->
 	</dependencies>
 
 	<build>

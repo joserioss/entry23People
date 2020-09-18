@@ -2,13 +2,11 @@ package cl.people.jrios.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "student")
@@ -18,21 +16,29 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idStudent;
 
-	@Column(name = "rut", nullable = false, length = 9)
-	private Integer rut;
+	// RUT is a String, without check digit. Internally I will generate the
+	// verification digit
+	@Size(min = 7, max = 8, message = "rut: whitout check digit")
+	@Column(name = "rut", nullable = false, length = 8)
+	private String rut;
 
+	@Size(min = 3, message = "Name: minimum three characters")
 	@Column(name = "name", nullable = false, length = 40)
 	private String name;
 
+	@Size(min = 3, message = "LastName: minimum three characters")
 	@Column(name = "lastName", nullable = false, length = 40)
 	private String lastName;
 
+	// age will be considered momentarily as string -> Integer
+	@Size(min = 2, message = "Age: +18")
 	@Column(name = "age", nullable = false, length = 2)
-	private Integer age;
+	private String age;
 
-	@ManyToOne
-	@JoinColumn(name = "id_course", nullable = false, foreignKey = @ForeignKey(name = "FK_student_course"))
-	private Course course;
+	// age will be considered momentarily as string -> Class Course
+	@Size(max = 4, message = "Code course: max four characters")
+	@Column(name = "codeCourse", nullable = false, length = 40)
+	private String course;
 
 	public Integer getIdStudent() {
 		return idStudent;
@@ -42,11 +48,11 @@ public class Student {
 		this.idStudent = idStudent;
 	}
 
-	public Integer getRut() {
+	public String getRut() {
 		return rut;
 	}
 
-	public void setRut(Integer rut) {
+	public void setRut(String rut) {
 		this.rut = rut;
 	}
 
@@ -66,19 +72,19 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
-	public Course getCourse() {
+	public String getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(String course) {
 		this.course = course;
 	}
 
