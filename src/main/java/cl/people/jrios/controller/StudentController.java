@@ -60,8 +60,12 @@ public class StudentController {
 	@PostMapping
 	public ResponseEntity<Object> register(@Valid @RequestBody Student student) {
 		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
+		boolean checkRut = service.checkRut(student.getRut());
 		if(codeFound == false) {
 			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		}
+		else if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT, VALID FORMAT: 12345678k");
 		}
 		Student stu = service.register(student);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(student.getIdStudent()).toUri();
@@ -71,8 +75,12 @@ public class StudentController {
 	@PutMapping
 	public ResponseEntity<Student> modify(@Valid @RequestBody Student student) {
 		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
+		boolean checkRut = service.checkRut(student.getRut());
 		if(codeFound == false) {
 			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		}
+		else if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT VALID FORMAT: 12345678k");
 		}
 		Student stu = service.modify(student);
 		return new ResponseEntity<Student>(stu, HttpStatus.OK);

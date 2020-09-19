@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import cl.people.jrios.model.entity.Student;
 import cl.people.jrios.model.repo.IStudentRepo;
 import cl.people.jrios.service.IStudentService;
+import cl.people.jrios.utility.ValidateRut;
 
 @Service
 public class StudentServiceImpl implements IStudentService {
@@ -51,6 +52,11 @@ public class StudentServiceImpl implements IStudentService {
 	public boolean remove(Integer id) {
 		repo.deleteById(id);
 		return true;
+	}
+
+	@Override
+	public boolean checkRut(String rut) {
+		return ValidateRut.CheckDigitRut(rut);
 	}
 
 }
