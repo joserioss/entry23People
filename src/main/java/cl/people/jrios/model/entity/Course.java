@@ -23,6 +23,14 @@ public class Course {
 	@Column(name = "code", nullable = false, length = 4)
 	private String code;
 
+	public Integer getIdCourse() {
+		return idCourse;
+	}
+
+	public void setIdCourse(Integer idCourse) {
+		this.idCourse = idCourse;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -38,5 +46,7 @@ public class Course {
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -30,10 +31,9 @@ public class Student {
 	@Column(name = "lastName", nullable = false, length = 40)
 	private String lastName;
 
-	// age will be considered momentarily as string -> Integer
-	@Size(min = 2, message = "Age: +18")
-	@Column(name = "age", nullable = false, length = 2)
-	private String age;
+	// over eighteen
+	@Min(18)
+	private Integer age;
 
 	// age will be considered momentarily as string -> Class Course
 	@Size(max = 4, message = "Code course: max four characters")
@@ -72,16 +72,16 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public String getAge() {
+	public String getCourse() {
+		return course;
+	}
+
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
-	}
-
-	public String getCourse() {
-		return course;
 	}
 
 	public void setCourse(String course) {
