@@ -73,7 +73,7 @@ public class Student {
 	}
 
 	public String getCourse() {
-		return course;
+		return course.toUpperCase();
 	}
 
 	public Integer getAge() {
@@ -85,7 +85,7 @@ public class Student {
 	}
 
 	public void setCourse(String course) {
-		this.course = course;
+		this.course = course.toUpperCase();
 	}
 
 }
