@@ -53,4 +53,10 @@ public class CourseServiceImpl implements ICourseService {
 		return true;
 	}
 
+	@Override
+	public boolean findByCode(String codeCourse) {
+		Optional<Course> op = repo.findByCode(codeCourse);
+		return op.isPresent() ? true : false;
+	}
+
 }
