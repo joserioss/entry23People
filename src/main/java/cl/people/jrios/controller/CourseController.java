@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,15 +25,21 @@ import cl.people.jrios.model.entity.Course;
 import cl.people.jrios.service.ICourseService;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/courses")
 public class CourseController {
 
 	@Autowired
 	private ICourseService service;
 
 	@GetMapping
-	public ResponseEntity<List<Course>> toList() {
-		List<Course> list = service.toList();
+	public ResponseEntity<Page<Course>> toList(Pageable pageable) {
+		Page<Course> page = service.toList(pageable);
+		return new ResponseEntity<Page<Course>>(page, HttpStatus.OK);
+	}
+
+	@GetMapping("/all")
+	public ResponseEntity<List<Course>> toListAll() {
+		List<Course> list = service.toListAll();
 		return new ResponseEntity<List<Course>>(list, HttpStatus.OK);
 	}
 

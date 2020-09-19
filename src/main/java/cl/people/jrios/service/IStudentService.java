@@ -2,6 +2,9 @@ package cl.people.jrios.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import cl.people.jrios.model.entity.Student;
 
 public interface IStudentService {
@@ -11,7 +14,7 @@ public interface IStudentService {
 	//Service to modify student
 	Student modify(Student student);
 	//Service to List students in a paginated way
-	List<Student> toList();
+	Page<Student> toList(Pageable pegeable);
 	//Service to List students All
 	List<Student> toListAll();
 	//Service to search for id
