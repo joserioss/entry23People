@@ -19,8 +19,8 @@ public class Student {
 
 	// RUT is a String, without check digit. Internally I will generate the
 	// verification digit
-	@Size(min = 7, max = 8, message = "rut: whitout check digit")
-	@Column(name = "rut", nullable = false, length = 8)
+	@Size(min = 8, max = 9, message = "rut: whitout check digit")
+	@Column(name = "rut", nullable = false, length = 9)
 	private String rut;
 
 	@Size(min = 3, message = "Name: minimum three characters")
@@ -73,7 +73,7 @@ public class Student {
 	}
 
 	public String getCourse() {
-		return course;
+		return course.toUpperCase();
 	}
 
 	public Integer getAge() {
@@ -85,7 +85,7 @@ public class Student {
 	}
 
 	public void setCourse(String course) {
-		this.course = course;
+		this.course = course.toUpperCase();
 	}
 
 }

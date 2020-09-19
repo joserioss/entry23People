@@ -40,11 +40,11 @@ public class Course {
 	}
 
 	public String getCode() {
-		return code;
+		return code.toUpperCase();
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		this.code = code.toUpperCase();
 	}
 
 

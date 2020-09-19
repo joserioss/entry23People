@@ -22,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import cl.people.jrios.exception.ModelNotFoundException;
 import cl.people.jrios.model.entity.Student;
+import cl.people.jrios.service.ICourseService;
 import cl.people.jrios.service.IStudentService;
 
 @RestController
@@ -30,6 +31,9 @@ public class StudentController {
 
 	@Autowired
 	private IStudentService service;
+	
+	@Autowired
+	private ICourseService serviceCourse;
 
 	@GetMapping
 	public ResponseEntity<Page<Student>> toList(Pageable pageable) {
@@ -55,6 +59,14 @@ public class StudentController {
 
 	@PostMapping
 	public ResponseEntity<Object> register(@Valid @RequestBody Student student) {
+		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
+		boolean checkRut = service.checkRut(student.getRut());
+		if(codeFound == false) {
+			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		}
+		else if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT, VALID FORMAT: 12345678k");
+		}
 		Student stu = service.register(student);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(student.getIdStudent()).toUri();
 		return ResponseEntity.created(location).build();
@@ -62,6 +74,14 @@ public class StudentController {
 
 	@PutMapping
 	public ResponseEntity<Student> modify(@Valid @RequestBody Student student) {
+		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
+		boolean checkRut = service.checkRut(student.getRut());
+		if(codeFound == false) {
+			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		}
+		else if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT VALID FORMAT: 12345678k");
+		}
 		Student stu = service.modify(student);
 		return new ResponseEntity<Student>(stu, HttpStatus.OK);
 	}
