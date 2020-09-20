@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import cl.people.jrios.model.entity.Student;
 import cl.people.jrios.model.repo.IStudentRepo;
 import cl.people.jrios.service.IStudentService;
-import cl.people.jrios.utility.ValidateRut;
+import cl.people.jrios.utility.RutUtils;
 
 @Service
 public class StudentServiceImpl implements IStudentService {
@@ -39,10 +39,11 @@ public class StudentServiceImpl implements IStudentService {
 		return repo.findAll();
 	}
 
-//	Because findById returns an optional, an optional is performed which:
-//	- if id exists, returns the indicated student, 
-//	- and if id does not exist, it retrieves an empty instance
-	@Override
+	/**
+	 * Because findById returns an optional, an optional is performed which: - if id
+	 * exists, returns the indicated students, - and if id does not exist, it
+	 * retrieves an empty instance
+	 */
 	public Student readForId(Integer id) {
 		Optional<Student> op = repo.findById(id);
 		return op.isPresent() ? op.get() : new Student();
@@ -56,7 +57,7 @@ public class StudentServiceImpl implements IStudentService {
 
 	@Override
 	public boolean checkRut(String rut) {
-		return ValidateRut.CheckDigitRut(rut);
+		return RutUtils.isValid(rut);
 	}
 
 }
