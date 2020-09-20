@@ -57,7 +57,7 @@ public class CourseController {
 	public ResponseEntity<Object> register(@Valid @RequestBody Course course) {
 		Course cour = service.register(course);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(course.getIdCourse()).toUri();
+				.buildAndExpand(cour.getIdCourse()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 
