@@ -12,7 +12,7 @@
 	<groupId>cl.people.jrios</groupId>
 	<artifactId>entry23People</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>entry23People</name>
 	<description>Initial development for entry test by Entry Software Engineer JAVA</description>
 
@@ -27,12 +27,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-devtools</artifactId> -->
+<!-- 			<scope>runtime</scope> -->
+<!-- 			<optional>true</optional> -->
+<!-- 		</dependency> -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -69,6 +70,13 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<!-- JSR 303 Validation # -->
+		<!-- Google Cloud GCP -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+			<version>1.2.3.RELEASE</version>
+		</dependency>
+		<!-- Google Cloud GCP -->
 	</dependencies>
 
 	<build>

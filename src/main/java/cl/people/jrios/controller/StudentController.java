@@ -68,7 +68,7 @@ public class StudentController {
 			throw new ModelNotFoundException("INVALID RUT, VALID FORMAT: 12345678k");
 		}
 		Student stu = service.register(student);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(student.getIdStudent()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(stu.getIdStudent()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 
