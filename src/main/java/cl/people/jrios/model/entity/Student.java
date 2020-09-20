@@ -1,10 +1,16 @@
 package cl.people.jrios.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -36,9 +42,11 @@ public class Student {
 	private Integer age;
 
 	// age will be considered momentarily as string -> Class Course
-	@Size(max = 4, message = "Code course: max four characters")
-	@Column(name = "codeCourse", nullable = false, length = 40)
-	private String course;
+//	@Size(max = 4, message = "Code course: max four characters")
+//	@Column(name = "codeCourse", nullable = false, length = 40)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "id_student", referencedColumnName = "idStudent"), inverseJoinColumns = @JoinColumn(name  ="id_course", referencedColumnName = "idCourse"))
+	private List<Course> course;
 
 	public Integer getIdStudent() {
 		return idStudent;
@@ -72,10 +80,6 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public String getCourse() {
-		return course.toUpperCase();
-	}
-
 	public Integer getAge() {
 		return age;
 	}
@@ -84,8 +88,14 @@ public class Student {
 		this.age = age;
 	}
 
-	public void setCourse(String course) {
-		this.course = course.toUpperCase();
+	public List<Course> getCourse() {
+		return course;
 	}
+
+	public void setCourse(List<Course> course) {
+		this.course = course;
+	}
+
+	
 
 }
