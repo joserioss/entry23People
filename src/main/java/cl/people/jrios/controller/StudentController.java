@@ -61,11 +61,11 @@ public class StudentController {
 	public ResponseEntity<Object> register(@Valid @RequestBody Student student) {
 		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
 		boolean checkRut = service.checkRut(student.getRut());
-		if(codeFound == false) {
-			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT" + student.getRut());
 		}
-		else if(checkRut == false) {
-			throw new ModelNotFoundException("INVALID RUT, VALID FORMAT: 12345678k");
+		else if(codeFound == false) {
+			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
 		}
 		Student stu = service.register(student);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(stu.getIdStudent()).toUri();
@@ -76,11 +76,11 @@ public class StudentController {
 	public ResponseEntity<Student> modify(@Valid @RequestBody Student student) {
 		boolean codeFound = serviceCourse.findByCode(student.getCourse()); 
 		boolean checkRut = service.checkRut(student.getRut());
-		if(codeFound == false) {
-			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
+		if(checkRut == false) {
+			throw new ModelNotFoundException("INVALID RUT" + student.getRut());
 		}
-		else if(checkRut == false) {
-			throw new ModelNotFoundException("INVALID RUT VALID FORMAT: 12345678k");
+		else if(codeFound == false) {
+			throw new ModelNotFoundException("CODE COURSE NOT FOUND ");
 		}
 		Student stu = service.modify(student);
 		return new ResponseEntity<Student>(stu, HttpStatus.OK);

@@ -38,9 +38,11 @@ public class CourseServiceImpl implements ICourseService {
 		return repo.findAll();
 	}
 
-//	Because findById returns an optional, an optional is performed which:
-//	- if id exists, returns the indicated course, 
-//	- and if id does not exist, it retrieves an empty instance
+	/**
+	 * Because findById returns an optional, an optional is performed which: 
+	 * - if id exists, returns the indicated course, 
+	 * - and if id does not exist, it retrieves an empty instance
+	 */
 	@Override
 	public Course readForId(Integer id) {
 		Optional<Course> op = repo.findById(id);
@@ -53,10 +55,15 @@ public class CourseServiceImpl implements ICourseService {
 		return true;
 	}
 
+	/**
+	 * Because findByCode returns an optional, an optional is performed which: 
+	 * - if code of Course exists, returns true, 
+	 * - and if code of Course does not exist, it retrieves a false.
+	 */
 	@Override
 	public boolean findByCode(String codeCourse) {
 		Optional<Course> op = repo.findByCode(codeCourse);
-		return op.isPresent() ? true : false;
+		return op.isPresent();
 	}
 
 }

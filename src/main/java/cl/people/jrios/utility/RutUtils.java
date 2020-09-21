@@ -1,10 +1,19 @@
 package cl.people.jrios.utility;
 
-public class ValidateRut {
-
-	// Method created in a utility class to verify that the rout entered in string format and with a check digit is true.
-	// Rut invalid: 12.345.678-k Format valid: 12345678k
-	public static boolean CheckDigitRut(String rut) {
+public class RutUtils {
+	
+	private RutUtils() {}
+	
+	
+	/**
+	 * Method created in a utility class to verify that the rout entered 
+	 * in string format and with a check digit is true.
+	 * Format invalid: 12.345.678-k 
+	 * Format valid: 12345678k
+	 * @param rut
+	 * @return
+	 */
+	public static boolean isValid(String rut) {
 		Integer lenght = rut.length();
 		Integer bodyRut = Integer.parseInt(rut.substring(0, (lenght - 1)));
 		String digitCheck = rut.substring((lenght - 1), lenght).toLowerCase();
