@@ -41,12 +41,12 @@ public class Student {
 	@Min(18)
 	private Integer age;
 
-	// age will be considered momentarily as string -> Class Course
-//	@Size(max = 4, message = "Code course: max four characters")
-//	@Column(name = "codeCourse", nullable = false, length = 40)
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "id_student", referencedColumnName = "idStudent"), inverseJoinColumns = @JoinColumn(name  ="id_course", referencedColumnName = "idCourse"))
-	private List<Course> course;
+// age will be considered momentarily as string -> Class List<Course>
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "id_student", referencedColumnName = "idStudent"), inverseJoinColumns = @JoinColumn(name  ="id_course", referencedColumnName = "idCourse"))
+	@Size(max = 4, message = "Code course: max four characters")
+	@Column(name = "codeCourse", nullable = false, length = 40)
+	private String course;
 
 	public Integer getIdStudent() {
 		return idStudent;
@@ -88,14 +88,12 @@ public class Student {
 		this.age = age;
 	}
 
-	public List<Course> getCourse() {
+	public String getCourse() {
 		return course;
 	}
 
-	public void setCourse(List<Course> course) {
+	public void setCourse(String course) {
 		this.course = course;
 	}
-
-	
 
 }

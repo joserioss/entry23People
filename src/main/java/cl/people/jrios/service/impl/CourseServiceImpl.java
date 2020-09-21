@@ -39,9 +39,9 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 	/**
-	 * Because findById returns an optional, an optional is performed which: - if id
-	 * exists, returns the indicated course, - and if id does not exist, it
-	 * retrieves an empty instance
+	 * Because findById returns an optional, an optional is performed which: 
+	 * - if id exists, returns the indicated course, 
+	 * - and if id does not exist, it retrieves an empty instance
 	 */
 	@Override
 	public Course readForId(Integer id) {
